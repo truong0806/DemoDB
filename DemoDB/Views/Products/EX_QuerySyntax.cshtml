@@ -1,0 +1,25 @@
+﻿@model IEnumerable<DemoDB.Models.ViewModel>
+
+@{
+    ViewBag.Title = "EX_QuerySyntax";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<h2>EX_QuerySyntax</h2>
+<table class="table">
+    <tr>
+        <th>Ten San Pham</th>
+        <th>Mo ta</th>
+    </tr>
+   @foreach(var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(model=>item.Namepro)
+            </td>
+            <td>
+                @Html.DisplayFor(model=>item.DesPro)
+            </td>
+        </tr>
+    }
+</table>

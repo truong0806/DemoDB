@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+   
+    <div class="thumbnail">
+        <div class="row">
+            <div class="col-md-12" style="height:30px;background-color:saddlebrown"></div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-3" style="height:30px;background-color:antiquewhite">
+                <ul>
+                    <li>
+                       <a href=" @Url.Action("RegisterAccount","LoginUser")">Register</a>
+                        @*<a href="LoginUser/RegisterAccount" style="color:seagreen">Register</a>*@
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index","LoginUser")">Login</a>
+                    </li>
+                    <li>
+                        @RenderSection("myscript", required: false)
+                        <a href="@Url.Action("Create","Product")">Product Create</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-9"  style="height:30px;background-color:antiquewhite">
+                @RenderBody()
+            </div>
+        </div>       
+        </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+﻿@model DemoDB.Models.AdminUser
+
+@{
+    ViewBag.Title = "RegisterAccount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .field-validation-error {
+        color: red;
+    }
+</style>
+<h2> RegisterUser</h2>
+@using (Html.BeginForm("RegisterAccount", "LoginUser", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <p>@Html.LabelFor(model => model.ID)</p>
+    <p>@Html.EditorFor(model => model.ID)</p>
+    <P>@Html.ValidationMessageFor(model => model.ID)</P>
+
+    if (ViewBag.ErrorRegister != null)
+    {
+        <p>@ViewBag.ErrorRegister</p>
+    }
+    <p>@Html.LabelFor(model => model.NameUser)</p>
+    <p>@Html.EditorFor(model => model.NameUser)</p>
+    <P>@Html.ValidationMessageFor(model => model.NameUser)</P>
+
+
+    <p>@Html.LabelFor(model => model.RoleUser)</p>
+    <p>@Html.EditorFor(model => model.RoleUser)</p>
+    <P>@Html.ValidationMessageFor(model => model.RoleUser)</P>
+
+    <p>@Html.LabelFor(model => model.PasswordUser)</p>
+    <p>@Html.PasswordFor(model => model.PasswordUser)</p>
+    <P>@Html.ValidationMessageFor(model => model.PasswordUser)</P>
+
+    <p>@Html.LabelFor(model => model.ConfirmPass)</p>
+    <p>@Html.PasswordFor(model => model.ConfirmPass)</p>
+    <P>@Html.ValidationMessageFor(model => model.ConfirmPass)</P>
+    <input type="submit" value="Register" />
+}
+
+

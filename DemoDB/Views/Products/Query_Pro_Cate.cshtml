@@ -1,0 +1,30 @@
+﻿@model IEnumerable<DemoDB.Models.ViewModel>
+@{
+    ViewBag.Title = "Query_Pro_Cate";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<h2>Query_Pro_Cate</h2>
+<table class="table">
+@foreach(var cate in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(model=>cate.NameCate)
+        </td>
+        <td>
+            @foreach(var pro in cate.ListProduct)
+            {
+                <table>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => pro.NamePro)
+                        </td>
+                    </tr>
+                </table>
+            }
+        </td>
+    </tr>
+}
+</table>
+

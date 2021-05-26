@@ -1,0 +1,61 @@
+﻿@model DemoDB.Models.Product
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+}
+
+<h2>THÊM MỚI SẢN PHẨM</h2>
+@using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <table class="table-bordered">
+        <tr>
+            <td>@Html.LabelFor(model => model.NamePro)</td>
+            <td>@Html.EditorFor(model => model.NamePro)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Price)</td>
+            <td>@Html.EditorFor(model => model.Price)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Category)</td>
+            <td>@Html.DropDownListFor(model=>model.Category,(SelectList)ViewBag.listCategory)</td>
+            <td>@{Html.RenderAction("SelectCate", "Products");}</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.DecriptionPro)</td>
+            <td>@Html.EditorFor(model => model.DecriptionPro)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.ImagePro)</td>
+            <td>
+                <img src="@Url.Content(Model.ImagePro)" height="150" width="150" id="previewImg" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="file" value="Choose File" name="UploadImage" onchange="previewFile()" />
+                <input type="submit" value="Tạo mới" />
+            </td>
+        </tr>
+    </table>
+}
+
+<script>
+    function previewFile() {
+        var preview = document.querySelector('img');
+        var file = document.querySelector('input[type=file]').files[0];
+        var reader = new FileReader();
+
+        reader.addEventListener("load", function () {
+            preview.src = reader.result;
+        }, false);
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+
+</script>
+

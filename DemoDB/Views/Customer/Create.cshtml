@@ -1,0 +1,41 @@
+﻿@model DemoDB.Models.Customer
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<style>
+    .field-validation-error {
+        color: red;
+    }
+</style>
+<h2> RegisterUser</h2>
+@using (Html.BeginForm("Create", "Customer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <p>@Html.LabelFor(model => model.IDCus)</p>
+    <p>@Html.EditorFor(model => model.IDCus)</p>
+    <P>@Html.ValidationMessageFor(model => model.IDCus)</P>
+
+    if (ViewBag.ErrorRegister != null)
+    {
+        <p>@ViewBag.ErrorRegister</p>
+    }
+    <p>@Html.LabelFor(model => model.NameCus)</p>
+    <p>@Html.EditorFor(model => model.NameCus)</p>
+    <P>@Html.ValidationMessageFor(model => model.NameCus)</P>
+
+
+    <p>@Html.LabelFor(model => model.PhoneCus)</p>
+    <p>@Html.EditorFor(model => model.PhoneCus)</p>
+    <P>@Html.ValidationMessageFor(model => model.PhoneCus)</P>
+
+    <p>@Html.LabelFor(model => model.EmailCus)</p>
+    <p>@Html.EditorFor(model => model.EmailCus)</p>
+    <P>@Html.ValidationMessageFor(model => model.EmailCus)</P>
+
+    <input type="submit" value="Register" />
+   
+}
+

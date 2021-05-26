@@ -1,0 +1,60 @@
+﻿
+@using DemoDB.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <style>
+        .a {
+            background-color: aquamarine;
+            text-align:center;
+            padding-top:10px;
+        }
+        #div-ds{
+            text-align: center;
+            background-color: forestgreen;
+            height: 50px;
+            border-radius: 20px 20px 0 0;
+        }
+        .MenuPage li{
+            display:inline;
+        }
+    </style>
+}
+
+<div style="background-color:darkgreen; height:40px; color:white; text-align: center"><h3 style="padding-top:7px">DANH SÁCH SẢN PHẨM</h3></div>
+<div>
+    <p>
+        @Html.ActionLink("THÊM MỚI SẢN PHẨM", "Create")
+    </p>
+
+</div>
+<div class="container">
+    <div class="row">
+        @foreach(var pro in Model)
+        {
+
+            <div class="col-sm-12 col-sm-6 col-md-4 col-lg-3" >
+                <div class="card-pro" >
+                    <p> @Html.DisplayFor(model => pro.ProductID)</p>
+                    <div class="a">
+                        <img src="~/Images/@Url.Content(pro.ImagePro)" height="150" width="150" />
+                        <p>@Html.DisplayFor(model => pro.NamePro)</p>
+                        <p>@Html.DisplayFor(model => pro.Price)</p>
+                    </div>
+                    
+                    <a href="/ShoppingCart/AddToCart/@pro.ProductID" class="btn btn-default" style="position:center">Buy</a>
+                    @*<p><input type="submit" value="Buy"/></p>*@
+                </div>
+            </div>
+        }
+    </div>   
+</div>
+Trang @(Model.PageCount<Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+<div class="MenuPage">
+    @Html.PagedListPager(Model, page=>Url.Action("Index", new { page=page}))
+</div>
+
+
